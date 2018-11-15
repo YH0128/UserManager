@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>user index</title>
+</head>
+<body>
+<table >
+    <tr>
+        <th>ID</th>
+        <th>登录名</th>
+        <th>密码</th>
+    </tr>
+    #for(user : pageData.list )
+    <tr>
+        <td>#(user.id)</td>
+        <td>#(user.login_name)</td>
+        <td>#(user.password)</td>
+    </tr>
+    #end
+</table>
+</body>
+</html>
