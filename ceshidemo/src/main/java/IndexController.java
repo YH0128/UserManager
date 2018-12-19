@@ -4,6 +4,7 @@ import com.jfinal.aop.Inject;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import io.jboot.Jboot;
+import io.jboot.core.rpc.annotation.JbootrpcService;
 import io.jboot.web.controller.JbootController;
 import io.jboot.web.controller.annotation.RequestMapping;
 
@@ -13,8 +14,9 @@ import java.util.List;
 @RequestMapping("/demo")
 public class IndexController extends JbootController {
 
-    @Inject
-    private UserService userService;
+    @JbootrpcService
+    UserService userService;
+
 
     public void index() {
         renderText("开发的开发就是开发呀");
@@ -22,7 +24,7 @@ public class IndexController extends JbootController {
 
     public void dbtest(){
         List<Record> records = Db.find("select * from user");
-        renderText(Arrays.toString(records.toArray()));
+        renderJson(records);
     }
 
 

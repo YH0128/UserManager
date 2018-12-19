@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>user index</title>
+    <link rel="stylesheet" href="/file/css/layui.css">
+</head>
+<script src="/file/js/layui.all.js"></script>
+<body class="layui-layout-body">
+<script>
+    //完整功能
+    laypage.render({
+        elem: 'demo7'
+        , count: 100
+        //,groups: 0
+        , layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip',]
+        , jump: function (obj) {
+            console.log(obj)
+        }
+    });
+
+</script>
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">天雨流芳</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="">首页</a></li>
+            <li class="layui-nav-item"><a href="">知识导航</a></li>
+            <li class="layui
+                <a href="javascript:-nav-item"><a href="">美景展示</a></li>
+            <li class="layui-nav-item">;">新大陆</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">联系我们</a></dd>
+                    <dd><a href="">人才招聘</a></dd>
+                    <dd><a href="">点子意见</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    admin
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">退了</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">所有商品</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">列表一</a></dd>
+                        <dd><a href="javascript:;">列表二</a></dd>
+                        <dd><a href="javascript:;">列表三</a></dd>
+                        <dd><a href="">超链接</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">解决方案</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">列表一</a></dd>
+                        <dd><a href="javascript:;">列表二</a></dd>
+                        <dd><a href="">超链接</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">云市场</a></li>
+                <li class="layui-nav-item"><a href="">发布商品</a></li>
+            </ul>
+        </div>
+    </div>
+
+        <table class="layui-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>姓名</th>
+                <th>地址</th>
+            </tr>
+            </thead>
+            #for(user : pageData.list )
+            <tr>
+                <td>#(user.id)</td>
+                <td>#(user.name)</td>
+                <td>#(user.address)</td>
+            </tr>
+            #end
+        </table>
+
+    </div>
+    <div id="demo7"></div>
+    <ul id="biuuu_city_list"></ul>
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © ludianxiang.cn
+    </div>
+</div>
+
+</body>
+</html>

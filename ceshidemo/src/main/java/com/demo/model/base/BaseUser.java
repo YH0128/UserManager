@@ -9,20 +9,20 @@ import com.jfinal.plugin.activerecord.IBean;
 @SuppressWarnings("serial")
 public abstract class BaseUser<M extends BaseUser<M>> extends JbootModel<M> implements IBean {
 
-	public void setId(java.lang.Integer id) {
+	public void setId(java.lang.Long id) {
 		set("id", id);
 	}
 	
-	public java.lang.Integer getId() {
-		return getInt("id");
+	public java.lang.Long getId() {
+		return getLong("id");
 	}
 
-	public void setName(java.lang.String name) {
-		set("name", name);
+	public void setRealName(java.lang.String realName) {
+		set("real_name", realName);
 	}
 	
-	public java.lang.String getName() {
-		return getStr("name");
+	public java.lang.String getRealName() {
+		return getStr("real_name");
 	}
 
 	public void setAddress(java.lang.String address) {
@@ -31,6 +31,46 @@ public abstract class BaseUser<M extends BaseUser<M>> extends JbootModel<M> impl
 	
 	public java.lang.String getAddress() {
 		return getStr("address");
+	}
+
+	public void setTelephone(java.lang.String telephone) {
+		set("telephone", telephone);
+	}
+	
+	public java.lang.String getTelephone() {
+		return getStr("telephone");
+	}
+
+	public void setSex(java.lang.Boolean sex) {
+		set("sex", sex);
+	}
+	
+	public java.lang.Boolean getSex() {
+		return get("sex");
+	}
+
+	public void setLoginName(java.lang.String loginName) {
+		set("login_name", loginName);
+	}
+	
+	public java.lang.String getLoginName() {
+		return getStr("login_name");
+	}
+
+	public void setLoginPassword(java.lang.String loginPassword) {
+		set("login_password", loginPassword);
+	}
+	
+	public java.lang.String getLoginPassword() {
+		return getStr("login_password");
+	}
+
+	public void setAge(java.lang.Integer age) {
+		set("age", age);
+	}
+	
+	public java.lang.Integer getAge() {
+		return getInt("age");
 	}
 
 }

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎访问LuDianXiang.CN网</title>
+    <link rel="stylesheet" href="/file/css/layui.css">
+</head>
+
+
+<style>
+    body {
+
+    }
+
+    #licheng {
+        padding-top: 50px;
+    }
+
+    #photo {
+        border: groove;
+    }
+
+</style>
+
+<body class="layui-layout-body layui-bg-blue" >
+
+<div class="layui-layout layui-layout-admin">
+
+    <div class="layui-header">
+        <div class="layui-logo">天雨流芳</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="">首页</a></li>
+            <li class="layui-nav-item"><a href="">知识导航</a></li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                     Yh0128
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                    <dd><a href="">退出登录</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+
+    <div class="layui-body">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="40%">
+                    <div class="layui-carousel" id="photo" align="center">
+                        <div carousel-item>
+                            <div><img src="/file/photo/ph0001.jpg"></div>
+                            <div><img src="/file/photo/ph0002.jpg"></div>
+                            <div><img src="/file/photo/ph0003.jpg"></div>
+                            <div><img src="/file/photo/ph0004.jpg"></div>
+                            <div><img src="/file/photo/ph0005.jpg"></div>
+                            <div><img src="/file/photo/ph0006.jpg"></div>
+                            <div><img src="/file/photo/ph0007.jpg"></div>
+                            <div><img src="/file/photo/ph0008.jpg"></div>
+                            <div><img src="/file/photo/ph0009.jpg"></div>
+                            <div><img src="/file/photo/ph0010.jpg"></div>
+                        </div>
+                    </div>
+                </td>
+
+                <td width="10%">
+                </td>
+
+                <td>
+                    <div class="layui-anim layui-anim-up" name="licheng" id="licheng">
+                        <ul class="layui-timeline">
+
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">2018年12月18日</h3>
+                                    <p>
+                                        创建开始
+                                        <br>坚持住就是一个的品质
+                                        <br>不断的去开辟新的道路，你自己就是最棒的 <i class="layui-icon"></i>
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">2018年12月18日</h3>
+                                    <p>第一步</p>
+                                    <ul>
+                                        <li> 开始使用</li>
+                                        <li> 一步一个脚印</li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">2018年12月18日</h3>
+                                    <p>
+                                        <br>《扬子江》
+                                        <br> ————宋·文天祥
+                                    </p>
+                                    <ul>
+                                        <li>几日随风北海游，</li>
+                                        <li>回从扬子大江头。</li>
+                                        <li>臣心一片磁针石，</li>
+                                        <li>不指南方不肯休。</li>
+                                    </ul>
+
+                                </div>
+                            </li>
+
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <div class="layui-timeline-title">待续</div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div style="width: 90%;">
+                        <form class="layui-form">
+                            <div class="layui-form-item" style="background-color: antiquewhite">
+                              <textarea name="demo" id="demo" class="layui-hide">
+
+                                </textarea>
+                            </div>
+                            <button class="layui-btn" id="tijiao">提交</button>
+                            <a class="layui-btn" id="getChoose">获取选中内容</a>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+
+
+</div>
+
+<script src="/file/js/layui.all.js"></script>
+<script>
+    layui.use('carousel', function () {
+        var carousel = layui.carousel;
+        carousel.render({
+            elem: '#photo'
+            , width: '560px'
+            , height: '420px'
+            , interval: 1500
+        });
+    });
+
+    layui.use('layedit', function(){
+        var layedit = layui.layedit;
+
+        var index = layedit.build('demo', {
+            //hideTool: ['image']
+            uploadImage: {
+                url: 'json/upload/demoLayEdit.json'
+                ,type: 'get'
+            }
+            //,tool: []
+            //,height: 100
+        });
+
+        getChoose.onclick = function(){
+            alert(document.getElementById("demo").value);
+        };
+
+    });
+
+</script>
+
+</body>
+</html>
