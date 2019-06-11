@@ -1,12 +1,18 @@
 package com.demo.service;
 
-import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Page;
 import com.demo.model.User;
+import io.jboot.db.model.Columns;
 
 import java.util.List;
 
-public interface UserService  {
+/**
+ * @author yh128
+ * @className UserService
+ * @description 用户服务接口
+ * @createTime 2019/6/11 15:42
+ */
+public interface UserService {
 
     /**
      * find model by primary key
@@ -47,18 +53,18 @@ public interface UserService  {
      * save model to database
      *
      * @param model
-     * @return
+     * @return id value if save success
      */
-    public boolean save(User model);
+    public Object save(User model);
 
 
     /**
      * save or update model
      *
      * @param model
-     * @return if save or update success
+     * @return id value if save or update success
      */
-    public boolean saveOrUpdate(User model);
+    public Object saveOrUpdate(User model);
 
 
     /**
@@ -71,41 +77,36 @@ public interface UserService  {
 
 
     /**
-     * 分页
+     * page query
      *
      * @param page
      * @param pageSize
-     * @return
+     * @return page data
      */
-    public Page<? extends Model> paginate(int page, int pageSize);
+    public Page<User> paginate(int page, int pageSize);
 
 
-    public void join(Page<? extends Model> page, String joinOnField);
+    /**
+     * page query by columns
+     *
+     * @param page
+     * @param pageSize
+     * @param columns
+     * @return page data
+     */
+    public Page<User> paginateByColumns(int page, int pageSize, Columns columns);
 
-    public void join(Page<? extends Model> page, String joinOnField, String[] attrs);
 
-    public void join(Page<? extends Model> page, String joinOnField, String joinName);
+    /**
+     * page query by columns
+     *
+     * @param page
+     * @param pageSize
+     * @param columns
+     * @param orderBy
+     * @return page data
+     */
+    public Page<User> paginateByColumns(int page, int pageSize, Columns columns, String orderBy);
 
-    public void join(Page<? extends Model> page, String joinOnField, String joinName, String[] attrs);
-
-    public void join(List<? extends Model> models, String joinOnField);
-
-    public void join(List<? extends Model> models, String joinOnField, String[] attrs);
-
-    public void join(List<? extends Model> models, String joinOnField, String joinName);
-
-    public void join(List<? extends Model> models, String joinOnField, String joinName, String[] attrs);
-
-    public void join(Model model, String joinOnField);
-
-    public void join(Model model, String joinOnField, String[] attrs);
-
-    public void join(Model model, String joinOnField, String joinName);
-
-    public void join(Model model, String joinOnField, String joinName, String[] attrs);
-
-    public void keep(Model model, String... attrs);
-
-    public void keep(List<? extends Model> models, String... attrs);
 
 }

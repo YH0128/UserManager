@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>轮播组件 - layui</title>
+
+  <link rel="stylesheet" href="/file/css/layui.css">
+
+  <style>
+  body{padding: 20px;}
+</style>
+</head>
+<body>
+
+
+
+<div class="layui-carousel" id="photo">
+  <div carousel-item>
+    <div><img src="/file/photo/ph0001.jpg"></div>
+    <div><img src="/file/photo/ph0002.jpg"></div>
+    <div><img src="/file/photo/ph0003.jpg"></div>
+    <div><img src="/file/photo/ph0004.jpg"></div>
+    <div><img src="/file/photo/ph0005.jpg"></div>
+    <div><img src="/file/photo/ph0006.jpg"></div>
+    <div><img src="/file/photo/ph0007.jpg"></div>
+    <div><img src="/file/photo/ph0008.jpg"></div>
+    <div><img src="/file/photo/ph0009.jpg"></div>
+    <div><img src="/file/photo/ph0010.jpg"></div>
+  </div>
+</div>
+
+
+<script src="/file/js/layui.all.js"></script>
+<script>
+    layui.use('carousel', function(){
+        var carousel = layui.carousel;
+        carousel.render({
+            elem: '#photo'
+            ,width: '1000px'
+            ,height: '800px'
+            ,interval: 1000
+        });
+    });
+</script>
+</body>
+</html>
