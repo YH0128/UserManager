@@ -1,73 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <property name="LOG_MAX_FILE_SIZE" value="100MB"/>
+    <property name="LOG_DIR" value="logs"/>
+    <!--application.yml 传递参数，不使用logback 自带的<property>标签 -->
+    <springProperty scope="context" name="APP_ID" source="app.id" default="service-account"/>
+    <springProperty scope="context" name="LOG_LEVEL" source="logback.level" default="INFO"/>
+    <springProperty scope="context" name="LOG_MAX_HISTORY" source="logback.MaxHistory" default="15"/>
+    <springProperty scope="context" name="HOSTNAME" source="SERVICE_HOSTNAME" default="host"/>
 
-    <!-- 控制台日志：输出全部日志到控制台 -->
+    <!-- 控制台输出 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <!-- By default, encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
-        <Encoding>UTF-8</Encoding>
-        <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n
-            </pattern>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}|%X{uri}|%X{requestId}| %-5level | ${PID:- } | ${APP_ID} | ${HOSTNAME} | [%thread] | %logger{36} | %msg%n</pattern>
         </encoder>
     </appender>
 
-
-    <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${log.path}/error/error.%d{yyyy-MM-dd}.log</fileNamePattern>
+    <!-- 日志文件输出 -->
+    <appender name="FILE"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${LOG_DIR}/${APP_ID}_%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <!-- 日志文件最大尺寸 -->
+<!--            <maxFileSize>${LOG_MAX_FILE_SIZE}</maxFileSize>-->
+            <!--日志文件保留天数-->
+<!--            <MaxHistory>${LOG_MAX_HISTORY}</MaxHistory>-->
         </rollingPolicy>
-        <encoder>
-            <pattern>${log.pattern}</pattern>
-        </encoder>
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>ERROR</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
-        </filter>
-    </appender>
-
-    <appender name="DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
-    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-        <fileNamePattern>${log.path}/debug/debug.%d{yyyy-MM-dd}.log</fileNamePattern>
-        <MaxHistory>${log.maxHistory}</MaxHistory>
-    </rollingPolicy>
-    <encoder>
-        <pattern>${log.pattern}</pattern>
-    </encoder>
-    <filter class="ch.qos.logback.classic.filter.LevelFilter">
-        <level>DEBUG</level>
-        <onMatch>ACCEPT</onMatch>
-        <onMismatch>DENY</onMismatch>
-    </filter>
-    </appender>
-
-    <!-- 文件日志：输出全部日志到文件 -->
-    <appender name="FILE"
-              class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <Encoding>UTF-8</Encoding>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>f:/logs/mts.%d{yyyy-MM-dd}.log</fileNamePattern>
-        </rollingPolicy>
-
-        <encoder>
-            <pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} [%thread] %-5level %logger{36} -
-                %msg%n
-            </pattern>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度 %msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}|%X{uri}|%X{requestId}| %-5level | ${PID:- } | ${APP_ID} | ${HOSTNAME} | [%thread] | %logger{36} | %msg%n</pattern>
+            <charset>UTF-8</charset>
         </encoder>
     </appender>
-
-
-
-
-    <root level="DEBUG">
-        <appender-ref ref="DEBUG" />
-
-    </root>
-
-    <root level="INFO">
+    <logger name="org.hibernate.orm.deprecation"  level="ERROR" />
+    <!-- 日志输出级别 -->
+    <root level="info">
         <appender-ref ref="STDOUT" />
         <appender-ref ref="FILE" />
-        <appender-ref ref="ERROR" />
-
     </root>
 </configuration>

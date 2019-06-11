@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,8 @@ public class UserController extends JbootController {
 
     private static Logger logger = LoggerFactory.getLogger(UserController.class);
 
+
+
     @Inject
     private UserService userService;
 
@@ -38,6 +41,7 @@ public class UserController extends JbootController {
         int page = getParaToInt("page", 1);
         Page userPage = userService.paginate(page, 10);
         setAttr("pageData", userPage);
+
         render("/file/html/user.html");
     }
 
@@ -45,7 +49,8 @@ public class UserController extends JbootController {
      * 默认进来的主界面
      */
     public void index() {
-        render("/file/html/main.html");
+
+        render("/file/main.html");
     }
 
     public void register() {
