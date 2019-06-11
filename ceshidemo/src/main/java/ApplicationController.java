@@ -14,38 +14,15 @@ import java.util.List;
 
 /**
  * @author yh128
- * @className IndexController
+ * @className ApplicationController
  * @description 启动类
  * @createTime 2019/6/11 15:43
  */
-@RequestMapping("/demo")
-public class IndexController extends JbootController {
-
-    @Inject
-    UserService userService;
-
-
+@RequestMapping("/")
+public class ApplicationController extends JbootController {
     public void index() {
-        renderText("开发的开发就是开发呀");
+        renderText("欢迎来到鲁甸乡社区[Welcome to Ludian Township Community]");
     }
-
-    public void dbtest() {
-        List<Record> records = Db.find("select * from user");
-        renderJson(records);
-    }
-
-
-    public void dbtest1() {
-        Record user = Db.findById("user", 1);
-        renderText(user.toString());
-    }
-
-    public void dtest() {
-        List<User> records = userService.findAll();
-        renderText(Arrays.toString(records.toArray()));
-    }
-
-
     public static void main(String[] args) {
         JbootApplication.run(args);
     }
