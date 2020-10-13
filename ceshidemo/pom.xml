@@ -29,7 +29,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>RELEASE</version>
+            <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
         <!-- logback 只配置这个，相关依赖jar会下载下来 -->
